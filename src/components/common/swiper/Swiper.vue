@@ -25,10 +25,12 @@
 		    type: Number,
         default: 300
       },
+      // 设置比例 按下当前图片左右滑动到25%时，自动滑到下一张
       moveRatio: {
         type: Number,
         default: 0.25
       },
+      // 显示指示器（小圆点）
       showIndicator: {
         type: Boolean,
         default: true

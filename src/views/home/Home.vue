@@ -11,6 +11,7 @@
   import HomeSwiper from './childComps/HomeSwiper'
   import RecommendView from './childComps/RecommendView'
 
+  // 获取接口数据
   import {getHomeMultidata} from "network/home";
 
   export default {
@@ -20,12 +21,14 @@
       HomeSwiper,
       RecommendView
     },
+    // data 存储接口中请求的数据
     data() {
       return {
         banners: [],
         recommends: []
       }
     },
+    // 组件创建好之后发送网络请求
     created() {
       // 1.请求多个数据
       getHomeMultidata().then(res => {
