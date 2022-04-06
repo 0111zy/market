@@ -3,6 +3,7 @@
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
     <home-swiper :banners="banners"/>
     <recommend-view :recommends="recommends"/>
+    <feature-view/>
   </div>
 </template>
 
@@ -10,6 +11,8 @@
   import NavBar from 'components/common/navbar/NavBar';
   import HomeSwiper from './childComps/HomeSwiper'
   import RecommendView from './childComps/RecommendView'
+  import FeatureView from './childComps/FeatureView'
+
 
   // 获取接口数据
   import {getHomeMultidata} from "network/home";
@@ -19,7 +22,8 @@
     components: {
       NavBar,
       HomeSwiper,
-      RecommendView
+      RecommendView,
+      FeatureView
     },
     // data 存储接口中请求的数据
     data() {
@@ -41,8 +45,17 @@
 </script>
 
 <style scoped>
+  #home{
+    padding-top: 44px;
+  }
   .home-nav {
     background-color: var(--color-tint);
     color: #fff;
+    /* 顶部导航固定，暂且用原生 */
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9 
   }
 </style>
