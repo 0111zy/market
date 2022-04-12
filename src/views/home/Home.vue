@@ -18,7 +18,7 @@
   import FeatureView from './childComps/FeatureView'
 
   // 获取接口数据
-  import {getHomeMultidata} from "network/home";
+  import {getHomeMultidata, getHomeGoods} from "network/home";
 
   export default {
     name: "Home",
@@ -33,17 +33,36 @@
     data() {
       return {
         banners: [],
-        recommends: []
+        recommends: [],
+        goods: {
+          'pop': {page: 0, list: []},   // 流行
+          'news': {page: 0, list: []},  // 新款
+          'sell': {page: 0, list: []}   // 精选
+        }
       }
     },
     // 组件创建好之后发送网络请求
     created() {
       // 1.请求多个数据
-      getHomeMultidata().then(res => {
+      this.getHomeMultidata()
+      // 2.请求商品数据
+      this.getHomeGoods()
+    },
+    methods:{
+      getHomeMultidata(){
+        getHomeMultidata().then(res => {
         // this.result = res;
         this.banners = res.data.banner.list;
         this.recommends = res.data.recommend.list;
+       })
+      },
+      getHomeGoods(type){
+        const page = this.goods[type].page + 1;
+        getHomeGoods(type,page).then(res =>{
+        console.log(res);
+        
       })
+      }
     }
   }
 </script>
